@@ -2,7 +2,15 @@ import express from "express";
 import { AdminRoutes } from "../app/admin/admin/admin.routes";
 import { AdminRoleRoutes } from "../app/admin/adminRole/admin.role.routes";
 import { BannerRoutes } from "../app/banner/banner.route";
+import { ContactRoutes } from "../app/contact/contact.routes";
+import { CareerRoutes } from "../app/career/career.routes";
+import { PricingRoutes } from "../app/pricing/pricing.routes";
+import { PortfolioRoutes } from "../app/portfolio/portfolio.routes";
+import { ServiceRoutes } from "../app/services/service.routes";
+import { AboutRoutes } from "../app/about/about.routes";
+import { HomeElementsRoutes } from "../app/homeElements/homeElements.routes";
 const router = express.Router();
+
 
 const moduleRoutes = [
   {
@@ -108,9 +116,38 @@ const moduleRoutes = [
   {
     path: "/banner",
     route: BannerRoutes,
+  },
+  {
+    path: "/contact",
+    route: ContactRoutes,
+  },
+  {
+    path: "/career",
+    route: CareerRoutes,
+  },
+  {
+    path: "/pricing",
+    route: PricingRoutes,
+  },
+  {
+    path: "/portfolio",
+    route: PortfolioRoutes,
+  },
+  {
+    path: "/services",
+    route: ServiceRoutes,
+  },
+  {
+    path: "/about",
+    route: AboutRoutes,
+  },
+  {
+    path: "/home-elements",
+    route: HomeElementsRoutes,
   }
   // {
   //   path: "/coupon",
+
   //   route: CouponRoutes,
   // },
   // {
