@@ -5,6 +5,8 @@ import { BannerRoutes } from "../app/banner/banner.route";
 import { ContactRoutes } from "../app/contact/contact.routes";
 import { CareerRoutes } from "../app/career/career.routes";
 import { PricingRoutes } from "../app/pricing/pricing.routes";
+import { PortfolioRoutes } from "../app/portfolio/portfolio.routes";
+import { ServiceRoutes } from "../app/services/service.routes";
 const router = express.Router();
 
 
@@ -124,6 +126,14 @@ const moduleRoutes = [
   {
     path: "/pricing",
     route: PricingRoutes,
+  },
+  {
+    path: "/portfolio",
+    route: PortfolioRoutes,
+  },
+  {
+    path: "/services",
+    route: ServiceRoutes,
   }
   // {
   //   path: "/coupon",
