@@ -4,7 +4,9 @@ import { AdminRoleRoutes } from "../app/admin/adminRole/admin.role.routes";
 import { BannerRoutes } from "../app/banner/banner.route";
 import { ContactRoutes } from "../app/contact/contact.routes";
 import { CareerRoutes } from "../app/career/career.routes";
+import { PricingRoutes } from "../app/pricing/pricing.routes";
 const router = express.Router();
+
 
 const moduleRoutes = [
   {
@@ -118,6 +120,10 @@ const moduleRoutes = [
   {
     path: "/career",
     route: CareerRoutes,
+  },
+  {
+    path: "/pricing",
+    route: PricingRoutes,
   }
   // {
   //   path: "/coupon",
