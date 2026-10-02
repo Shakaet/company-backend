@@ -2,6 +2,7 @@ import express from "express";
 import { AdminRoutes } from "../app/admin/admin/admin.routes";
 import { AdminRoleRoutes } from "../app/admin/adminRole/admin.role.routes";
 import { BannerRoutes } from "../app/banner/banner.route";
+import { ContactRoutes } from "../app/contact/contact.routes";
 const router = express.Router();
 
 const moduleRoutes = [
@@ -108,9 +109,14 @@ const moduleRoutes = [
   {
     path: "/banner",
     route: BannerRoutes,
+  },
+  {
+    path: "/contact",
+    route: ContactRoutes,
   }
   // {
   //   path: "/coupon",
+
   //   route: CouponRoutes,
   // },
   // {
