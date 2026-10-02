@@ -28,6 +28,14 @@ export const PricingService = {
     return { data, total, page, limit };
   },
 
+  updatePlan: async (id: string, payload: Partial<IPricingPlan>) => {
+    return await PricingPlan.findByIdAndUpdate(id, payload, { new: true });
+  },
+
+  deletePlan: async (id: string) => {
+    return await PricingPlan.findByIdAndDelete(id);
+  },
+
   createGuarantee: async (payload: Partial<IPricingGuarantee>): Promise<IPricingGuarantee> => {
     return await PricingGuarantee.create(payload);
   },
@@ -44,5 +52,13 @@ export const PricingService = {
     const data = await PricingGuarantee.find().sort({ createdAt: -1 }).skip(skip).limit(limit);
     const total = await PricingGuarantee.countDocuments();
     return { data, total, page, limit };
+  },
+
+  updateGuarantee: async (id: string, payload: Partial<IPricingGuarantee>) => {
+    return await PricingGuarantee.findByIdAndUpdate(id, payload, { new: true });
+  },
+
+  deleteGuarantee: async (id: string) => {
+    return await PricingGuarantee.findByIdAndDelete(id);
   },
 };

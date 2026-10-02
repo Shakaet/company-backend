@@ -73,4 +73,15 @@ export const CareerService = {
       limit,
     };
   },
+  updateJob: async (id: string, payload: Partial<ICareerJob>): Promise<ICareerJob | null> => {
+    return await CareerJob.findByIdAndUpdate(id, payload, { new: true });
+  },
+
+  deleteJob: async (id: string): Promise<ICareerJob | null> => {
+    return await CareerJob.findByIdAndDelete(id);
+  },
+
+  updateApplicationStatus: async (id: string, status: string): Promise<IJobApplication | null> => {
+    return await JobApplication.findByIdAndUpdate(id, { status }, { new: true });
+  },
 };

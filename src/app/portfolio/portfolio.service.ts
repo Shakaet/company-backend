@@ -16,6 +16,13 @@ export const PortfolioService = {
     return { data, total, page, limit };
   },
 
+  updateHighlight: async (id: string, payload: Partial<IPortfolioHighlight>) => {
+    return await PortfolioHighlight.findByIdAndUpdate(id, payload, { new: true });
+  },
+  deleteHighlight: async (id: string) => {
+    return await PortfolioHighlight.findByIdAndDelete(id);
+  },
+
   // --- Categories ---
   createCategory: async (payload: Partial<IProjectCategory>) => {
     return await ProjectCategory.create(payload);
@@ -28,6 +35,12 @@ export const PortfolioService = {
     const data = await ProjectCategory.find().sort({ createdAt: -1 }).skip(skip).limit(limit);
     const total = await ProjectCategory.countDocuments();
     return { data, total, page, limit };
+  },
+  updateCategory: async (id: string, payload: Partial<IProjectCategory>) => {
+    return await ProjectCategory.findByIdAndUpdate(id, payload, { new: true });
+  },
+  deleteCategory: async (id: string) => {
+    return await ProjectCategory.findByIdAndDelete(id);
   },
 
   // --- Projects ---
@@ -51,5 +64,11 @@ export const PortfolioService = {
     const data = await Project.find(query).populate("category").sort({ createdAt: -1 }).skip(skip).limit(limit);
     const total = await Project.countDocuments(query);
     return { data, total, page, limit };
+  },
+  updateProject: async (id: string, payload: Partial<IProject>) => {
+    return await Project.findByIdAndUpdate(id, payload, { new: true });
+  },
+  deleteProject: async (id: string) => {
+    return await Project.findByIdAndDelete(id);
   },
 };

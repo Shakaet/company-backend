@@ -21,6 +21,15 @@ export const PortfolioController = {
     sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Highlights fetched for admin", data: result });
   }),
 
+  updateHighlight: catchAsync(async (req: Request, res: Response) => {
+    const result = await PortfolioService.updateHighlight(req.params.id, req.body);
+    sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Highlight updated", data: result });
+  }),
+  deleteHighlight: catchAsync(async (req: Request, res: Response) => {
+    const result = await PortfolioService.deleteHighlight(req.params.id);
+    sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Highlight deleted", data: result });
+  }),
+
   // Categories
   createCategory: catchAsync(async (req: Request, res: Response) => {
     const result = await PortfolioService.createCategory(req.body);
@@ -36,10 +45,23 @@ export const PortfolioController = {
     const result = await PortfolioService.getAllCategoriesForAdmin(page, limit);
     sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Categories fetched for admin", data: result });
   }),
+  updateCategory: catchAsync(async (req: Request, res: Response) => {
+    const result = await PortfolioService.updateCategory(req.params.id, req.body);
+    sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Category updated", data: result });
+  }),
+  deleteCategory: catchAsync(async (req: Request, res: Response) => {
+    const result = await PortfolioService.deleteCategory(req.params.id);
+    sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Category deleted", data: result });
+  }),
 
   // Projects
   createProject: catchAsync(async (req: Request, res: Response) => {
-    const result = await PortfolioService.createProject(req.body);
+    let payload = req.body.data ? JSON.parse(req.body.data) : req.body;
+    if (req.file) {
+      payload.image = (req.file as any).path;
+      payload.image_key = (req.file as any).filename;
+    }
+    const result = await PortfolioService.createProject(payload);
     sendResponse(res, { statusCode: httpStatus.CREATED, success: true, message: "Project created", data: result });
   }),
   getAllProjects: catchAsync(async (req: Request, res: Response) => {
@@ -53,5 +75,18 @@ export const PortfolioController = {
     const searchTerm = (req.query.searchTerm as string || req.query.searchterm as string) || "";
     const result = await PortfolioService.getAllProjectsForAdmin(page, limit, searchTerm);
     sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Projects fetched for admin", data: result });
+  }),
+  updateProject: catchAsync(async (req: Request, res: Response) => {
+    let payload = req.body.data ? JSON.parse(req.body.data) : req.body;
+    if (req.file) {
+      payload.image = (req.file as any).path;
+      payload.image_key = (req.file as any).filename;
+    }
+    const result = await PortfolioService.updateProject(req.params.id, payload);
+    sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Project updated", data: result });
+  }),
+  deleteProject: catchAsync(async (req: Request, res: Response) => {
+    const result = await PortfolioService.deleteProject(req.params.id);
+    sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Project deleted", data: result });
   }),
 };

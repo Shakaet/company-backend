@@ -39,4 +39,24 @@ export const PricingController = {
     const result = await PricingService.getAllGuaranteesForAdmin(page, limit);
     sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Pricing guarantees fetched successfully for admin", data: result });
   }),
+
+  updatePlan: catchAsync(async (req: Request, res: Response) => {
+    const result = await PricingService.updatePlan(req.params.id, req.body);
+    sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Plan updated", data: result });
+  }),
+
+  deletePlan: catchAsync(async (req: Request, res: Response) => {
+    const result = await PricingService.deletePlan(req.params.id);
+    sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Plan deleted", data: result });
+  }),
+
+  updateGuarantee: catchAsync(async (req: Request, res: Response) => {
+    const result = await PricingService.updateGuarantee(req.params.id, req.body);
+    sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Guarantee updated", data: result });
+  }),
+
+  deleteGuarantee: catchAsync(async (req: Request, res: Response) => {
+    const result = await PricingService.deleteGuarantee(req.params.id);
+    sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Guarantee deleted", data: result });
+  }),
 };
