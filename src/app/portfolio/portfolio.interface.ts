@@ -1,7 +1,7 @@
 import { Document, Types } from "mongoose";
 
 export interface IPortfolioHighlight extends Document {
-  icon: string;
+  icon?: string;
   value: string;
   label: string;
   status: "active" | "inactive";

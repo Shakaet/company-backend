@@ -3,7 +3,7 @@ import { IPortfolioHighlight, IProjectCategory, IProject } from "./portfolio.int
 
 const PortfolioHighlightSchema = new Schema<IPortfolioHighlight>(
   {
-    icon: { type: String, required: true },
+    icon: { type: String },
     value: { type: String, required: true },
     label: { type: String, required: true },
     status: { type: String, enum: ["active", "inactive"], default: "active" },
