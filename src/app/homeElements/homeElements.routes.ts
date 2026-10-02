@@ -15,4 +15,19 @@ router.post("/why-choose-us", verify("home_create", "admin"), HomeElementsContro
 router.get("/admin/why-choose-us", verify("home_show", "admin"), HomeElementsController.getAllWhyChooseUsForAdmin);
 router.get("/why-choose-us", HomeElementsController.getAllWhyChooseUs);
 
+// Partners
+router.post("/partners", verify("home_create", "admin"), HomeElementsController.createPartner);
+router.get("/admin/partners", verify("home_show", "admin"), HomeElementsController.getAllPartnersForAdmin);
+router.get("/partners", HomeElementsController.getAllPartners);
+
+// Tech Stack
+router.post("/tech-stack", verify("home_create", "admin"), HomeElementsController.createTechStack);
+router.get("/admin/tech-stack", verify("home_show", "admin"), HomeElementsController.getAllTechStacksForAdmin);
+router.get("/tech-stack", HomeElementsController.getAllTechStacks);
+
+// Stats
+router.post("/stats", verify("home_create", "admin"), HomeElementsController.createStat);
+router.get("/admin/stats", verify("home_show", "admin"), HomeElementsController.getAllStatsForAdmin);
+router.get("/stats", HomeElementsController.getAllStats);
+
 export const HomeElementsRoutes = router;

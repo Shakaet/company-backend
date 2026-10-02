@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { ITestimonial, IWhyChooseUs } from "./homeElements.interface";
+import { ITestimonial, IWhyChooseUs, IPartner, ITechStack, IStat } from "./homeElements.interface";
 
 const TestimonialSchema = new Schema<ITestimonial>({
   name: { type: String, required: true },
@@ -28,3 +28,25 @@ const WhyChooseUsSchema = new Schema<IWhyChooseUs>({
 }, { timestamps: true });
 
 export const WhyChooseUs = model<IWhyChooseUs>("WhyChooseUs", WhyChooseUsSchema);
+
+const PartnerSchema = new Schema<IPartner>({
+  name: { type: String, required: true },
+  status: { type: String, enum: ["active", "inactive"], default: "active" }
+}, { timestamps: true });
+
+export const Partner = model<IPartner>("Partner", PartnerSchema);
+
+const TechStackSchema = new Schema<ITechStack>({
+  name: { type: String, required: true },
+  status: { type: String, enum: ["active", "inactive"], default: "active" }
+}, { timestamps: true });
+
+export const TechStack = model<ITechStack>("TechStack", TechStackSchema);
+
+const StatSchema = new Schema<IStat>({
+  label: { type: String, required: true },
+  value: { type: String, required: true },
+  status: { type: String, enum: ["active", "inactive"], default: "active" }
+}, { timestamps: true });
+
+export const Stat = model<IStat>("Stat", StatSchema);

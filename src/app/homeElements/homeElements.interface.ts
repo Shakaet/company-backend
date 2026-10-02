@@ -1,5 +1,22 @@
 import { Document } from "mongoose";
 
+export interface IPartner extends Document {
+  name: string;
+  status: "active" | "inactive";
+}
+
+export interface ITechStack extends Document {
+  name: string;
+  status: "active" | "inactive";
+}
+
+export interface IStat extends Document {
+  label: string;
+  value: string;
+  status: "active" | "inactive";
+}
+
+
 export interface ITestimonial extends Document {
   name: string;
   role: string;
