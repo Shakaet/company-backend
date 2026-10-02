@@ -9,6 +9,7 @@ const ServiceSchema = new Schema<IService>(
     shortDesc: { type: String, required: true },
     badge: { type: String },
     icon: { type: String, required: true },
+    icon_key: { type: String },
     heroHeadline: { type: String },
     description: { type: String, required: true },
     features: [{ type: String }],

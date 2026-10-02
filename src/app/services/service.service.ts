@@ -36,6 +36,18 @@ export const ServiceService = {
     return { data, total, page, limit };
   },
 
+  updateService: async (id: string, payload: Partial<IService>): Promise<IService | null> => {
+    const existing = await ServiceModel.findById(id);
+    if (!existing) throw new ApiError(404, "Service not found");
+    return await ServiceModel.findByIdAndUpdate(id, payload, { new: true });
+  },
+
+  deleteService: async (id: string): Promise<IService | null> => {
+    const existing = await ServiceModel.findById(id);
+    if (!existing) throw new ApiError(404, "Service not found");
+    return await ServiceModel.findByIdAndDelete(id);
+  },
+
   // --- Consultations (Form) ---
   createConsultation: async (payload: Partial<IServiceConsultation>): Promise<IServiceConsultation> => {
     return await ServiceConsultation.create(payload);
@@ -49,5 +61,11 @@ export const ServiceService = {
     const data = await ServiceConsultation.find().sort({ createdAt: -1 }).skip(skip).limit(limit);
     const total = await ServiceConsultation.countDocuments();
     return { data, total, page, limit };
+  },
+
+  updateConsultationStatus: async (id: string, status: string): Promise<IServiceConsultation | null> => {
+    const existing = await ServiceConsultation.findById(id);
+    if (!existing) throw new ApiError(404, "Consultation not found");
+    return await ServiceConsultation.findByIdAndUpdate(id, { status }, { new: true });
   },
 };

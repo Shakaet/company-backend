@@ -7,6 +7,7 @@ export interface IService extends Document {
   shortDesc: string;
   badge?: string;
   icon: string;
+  icon_key?: string;
   heroHeadline?: string;
   description: string;
   features: string[];
