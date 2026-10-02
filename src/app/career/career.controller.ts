@@ -64,17 +64,17 @@ export const CareerController = {
   }),
 
   updateJob: catchAsync(async (req: Request, res: Response) => {
-    const result = await CareerService.updateJob(req.params.id, req.body);
+    const result = await CareerService.updateJob(req.params.id as string, req.body);
     sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Job updated", data: result });
   }),
 
   deleteJob: catchAsync(async (req: Request, res: Response) => {
-    const result = await CareerService.deleteJob(req.params.id);
+    const result = await CareerService.deleteJob(req.params.id as string);
     sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Job deleted", data: result });
   }),
 
   updateApplicationStatus: catchAsync(async (req: Request, res: Response) => {
-    const result = await CareerService.updateApplicationStatus(req.params.id, req.body.status);
+    const result = await CareerService.updateApplicationStatus(req.params.id as string, req.body.status);
     sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Application status updated", data: result });
   }),
 };

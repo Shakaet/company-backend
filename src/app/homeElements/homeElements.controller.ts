@@ -20,11 +20,11 @@ export const HomeElementsController = {
     sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Testimonials fetched for admin", data: result });
   }),
   updateTestimonial: catchAsync(async (req: Request, res: Response) => {
-    const result = await HomeElementsService.updateTestimonial(req.params.id, req.body);
+    const result = await HomeElementsService.updateTestimonial(req.params.id as string, req.body);
     sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Testimonial updated", data: result });
   }),
   deleteTestimonial: catchAsync(async (req: Request, res: Response) => {
-    await HomeElementsService.deleteTestimonial(req.params.id);
+    await HomeElementsService.deleteTestimonial(req.params.id as string);
     sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Testimonial deleted", data: null });
   }),
 
@@ -43,11 +43,11 @@ export const HomeElementsController = {
     sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Why Choose Us fetched for admin", data: result });
   }),
   updateWhyChooseUs: catchAsync(async (req: Request, res: Response) => {
-    const result = await HomeElementsService.updateWhyChooseUs(req.params.id, req.body);
+    const result = await HomeElementsService.updateWhyChooseUs(req.params.id as string, req.body);
     sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Why Choose Us updated", data: result });
   }),
   deleteWhyChooseUs: catchAsync(async (req: Request, res: Response) => {
-    await HomeElementsService.deleteWhyChooseUs(req.params.id);
+    await HomeElementsService.deleteWhyChooseUs(req.params.id as string);
     sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Why Choose Us deleted", data: null });
   }),
 
@@ -66,11 +66,11 @@ export const HomeElementsController = {
     sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Partners fetched for admin", data: result });
   }),
   updatePartner: catchAsync(async (req: Request, res: Response) => {
-    const result = await HomeElementsService.updatePartner(req.params.id, req.body);
+    const result = await HomeElementsService.updatePartner(req.params.id as string, req.body);
     sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Partner updated", data: result });
   }),
   deletePartner: catchAsync(async (req: Request, res: Response) => {
-    await HomeElementsService.deletePartner(req.params.id);
+    await HomeElementsService.deletePartner(req.params.id as string);
     sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Partner deleted", data: null });
   }),
 
@@ -89,11 +89,11 @@ export const HomeElementsController = {
     sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Tech Stack fetched for admin", data: result });
   }),
   updateTechStack: catchAsync(async (req: Request, res: Response) => {
-    const result = await HomeElementsService.updateTechStack(req.params.id, req.body);
+    const result = await HomeElementsService.updateTechStack(req.params.id as string, req.body);
     sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Tech Stack updated", data: result });
   }),
   deleteTechStack: catchAsync(async (req: Request, res: Response) => {
-    await HomeElementsService.deleteTechStack(req.params.id);
+    await HomeElementsService.deleteTechStack(req.params.id as string);
     sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Tech Stack deleted", data: null });
   }),
 
@@ -112,11 +112,11 @@ export const HomeElementsController = {
     sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Stats fetched for admin", data: result });
   }),
   updateStat: catchAsync(async (req: Request, res: Response) => {
-    const result = await HomeElementsService.updateStat(req.params.id, req.body);
+    const result = await HomeElementsService.updateStat(req.params.id as string, req.body);
     sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Stat updated", data: result });
   }),
   deleteStat: catchAsync(async (req: Request, res: Response) => {
-    await HomeElementsService.deleteStat(req.params.id);
+    await HomeElementsService.deleteStat(req.params.id as string);
     sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Stat deleted", data: null });
   })
 };

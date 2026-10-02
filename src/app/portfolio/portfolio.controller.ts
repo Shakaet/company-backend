@@ -22,11 +22,11 @@ export const PortfolioController = {
   }),
 
   updateHighlight: catchAsync(async (req: Request, res: Response) => {
-    const result = await PortfolioService.updateHighlight(req.params.id, req.body);
+    const result = await PortfolioService.updateHighlight(req.params.id as string, req.body);
     sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Highlight updated", data: result });
   }),
   deleteHighlight: catchAsync(async (req: Request, res: Response) => {
-    const result = await PortfolioService.deleteHighlight(req.params.id);
+    const result = await PortfolioService.deleteHighlight(req.params.id as string);
     sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Highlight deleted", data: result });
   }),
 
@@ -46,11 +46,11 @@ export const PortfolioController = {
     sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Categories fetched for admin", data: result });
   }),
   updateCategory: catchAsync(async (req: Request, res: Response) => {
-    const result = await PortfolioService.updateCategory(req.params.id, req.body);
+    const result = await PortfolioService.updateCategory(req.params.id as string, req.body);
     sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Category updated", data: result });
   }),
   deleteCategory: catchAsync(async (req: Request, res: Response) => {
-    const result = await PortfolioService.deleteCategory(req.params.id);
+    const result = await PortfolioService.deleteCategory(req.params.id as string);
     sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Category deleted", data: result });
   }),
 
@@ -82,11 +82,11 @@ export const PortfolioController = {
       payload.image = (req.file as any).path;
       payload.image_key = (req.file as any).filename;
     }
-    const result = await PortfolioService.updateProject(req.params.id, payload);
+    const result = await PortfolioService.updateProject(req.params.id as string, payload);
     sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Project updated", data: result });
   }),
   deleteProject: catchAsync(async (req: Request, res: Response) => {
-    const result = await PortfolioService.deleteProject(req.params.id);
+    const result = await PortfolioService.deleteProject(req.params.id as string);
     sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Project deleted", data: result });
   }),
 };

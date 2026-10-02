@@ -25,7 +25,7 @@ export const ServiceController = {
   }),
   
   getServiceBySlug: catchAsync(async (req: Request, res: Response) => {
-    const result = await ServiceService.getServiceBySlug(req.params.slug);
+    const result = await ServiceService.getServiceBySlug(req.params.slug as string);
     sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Service fetched successfully", data: result });
   }),
 
@@ -46,12 +46,12 @@ export const ServiceController = {
       payload.icon = (req.file as any).path;
       payload.icon_key = (req.file as any).filename;
     }
-    const result = await ServiceService.updateService(req.params.id, payload);
+    const result = await ServiceService.updateService(req.params.id as string, payload);
     sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Service updated successfully", data: result });
   }),
 
   deleteService: catchAsync(async (req: Request, res: Response) => {
-    const result = await ServiceService.deleteService(req.params.id);
+    const result = await ServiceService.deleteService(req.params.id as string);
     sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Service deleted successfully", data: result });
   }),
 
@@ -68,7 +68,7 @@ export const ServiceController = {
     sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Consultations fetched successfully", data: result });
   }),
   updateConsultationStatus: catchAsync(async (req: Request, res: Response) => {
-    const result = await ServiceService.updateConsultationStatus(req.params.id, req.body.status);
+    const result = await ServiceService.updateConsultationStatus(req.params.id as string, req.body.status);
     sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Consultation status updated", data: result });
   }),
 };

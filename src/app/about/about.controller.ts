@@ -34,11 +34,11 @@ export const AboutController = {
   }),
   updateTeamMember: catchAsync(async (req: Request, res: Response) => {
     const payload = req.body.data ? JSON.parse(req.body.data) : req.body;
-    const result = await AboutService.updateTeamMember(req.params.id, req.file, payload);
+    const result = await AboutService.updateTeamMember(req.params.id as string, req.file, payload);
     sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Team member updated", data: result });
   }),
   deleteTeamMember: catchAsync(async (req: Request, res: Response) => {
-    await AboutService.deleteTeamMember(req.params.id);
+    await AboutService.deleteTeamMember(req.params.id as string);
     sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Team member deleted", data: null });
   }),
 
