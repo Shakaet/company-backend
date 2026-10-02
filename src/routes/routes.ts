@@ -7,6 +7,7 @@ import { CareerRoutes } from "../app/career/career.routes";
 import { PricingRoutes } from "../app/pricing/pricing.routes";
 import { PortfolioRoutes } from "../app/portfolio/portfolio.routes";
 import { ServiceRoutes } from "../app/services/service.routes";
+import { AboutRoutes } from "../app/about/about.routes";
 const router = express.Router();
 
 
@@ -134,6 +135,10 @@ const moduleRoutes = [
   {
     path: "/services",
     route: ServiceRoutes,
+  },
+  {
+    path: "/about",
+    route: AboutRoutes,
   }
   // {
   //   path: "/coupon",
