@@ -19,6 +19,14 @@ export const HomeElementsController = {
     const result = await HomeElementsService.getAllTestimonialsForAdmin(page, limit);
     sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Testimonials fetched for admin", data: result });
   }),
+  updateTestimonial: catchAsync(async (req: Request, res: Response) => {
+    const result = await HomeElementsService.updateTestimonial(req.params.id, req.body);
+    sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Testimonial updated", data: result });
+  }),
+  deleteTestimonial: catchAsync(async (req: Request, res: Response) => {
+    await HomeElementsService.deleteTestimonial(req.params.id);
+    sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Testimonial deleted", data: null });
+  }),
 
   createWhyChooseUs: catchAsync(async (req: Request, res: Response) => {
     const result = await HomeElementsService.createWhyChooseUs(req.body);
@@ -33,6 +41,14 @@ export const HomeElementsController = {
     const limit = parseInt(req.query.limit as string) || 10;
     const result = await HomeElementsService.getAllWhyChooseUsForAdmin(page, limit);
     sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Why Choose Us fetched for admin", data: result });
+  }),
+  updateWhyChooseUs: catchAsync(async (req: Request, res: Response) => {
+    const result = await HomeElementsService.updateWhyChooseUs(req.params.id, req.body);
+    sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Why Choose Us updated", data: result });
+  }),
+  deleteWhyChooseUs: catchAsync(async (req: Request, res: Response) => {
+    await HomeElementsService.deleteWhyChooseUs(req.params.id);
+    sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Why Choose Us deleted", data: null });
   }),
 
   createPartner: catchAsync(async (req: Request, res: Response) => {
@@ -49,6 +65,14 @@ export const HomeElementsController = {
     const result = await HomeElementsService.getAllPartnersForAdmin(page, limit);
     sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Partners fetched for admin", data: result });
   }),
+  updatePartner: catchAsync(async (req: Request, res: Response) => {
+    const result = await HomeElementsService.updatePartner(req.params.id, req.body);
+    sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Partner updated", data: result });
+  }),
+  deletePartner: catchAsync(async (req: Request, res: Response) => {
+    await HomeElementsService.deletePartner(req.params.id);
+    sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Partner deleted", data: null });
+  }),
 
   createTechStack: catchAsync(async (req: Request, res: Response) => {
     const result = await HomeElementsService.createTechStack(req.body);
@@ -64,6 +88,14 @@ export const HomeElementsController = {
     const result = await HomeElementsService.getAllTechStacksForAdmin(page, limit);
     sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Tech Stack fetched for admin", data: result });
   }),
+  updateTechStack: catchAsync(async (req: Request, res: Response) => {
+    const result = await HomeElementsService.updateTechStack(req.params.id, req.body);
+    sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Tech Stack updated", data: result });
+  }),
+  deleteTechStack: catchAsync(async (req: Request, res: Response) => {
+    await HomeElementsService.deleteTechStack(req.params.id);
+    sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Tech Stack deleted", data: null });
+  }),
 
   createStat: catchAsync(async (req: Request, res: Response) => {
     const result = await HomeElementsService.createStat(req.body);
@@ -78,5 +110,13 @@ export const HomeElementsController = {
     const limit = parseInt(req.query.limit as string) || 10;
     const result = await HomeElementsService.getAllStatsForAdmin(page, limit);
     sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Stats fetched for admin", data: result });
+  }),
+  updateStat: catchAsync(async (req: Request, res: Response) => {
+    const result = await HomeElementsService.updateStat(req.params.id, req.body);
+    sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Stat updated", data: result });
+  }),
+  deleteStat: catchAsync(async (req: Request, res: Response) => {
+    await HomeElementsService.deleteStat(req.params.id);
+    sendResponse(res, { statusCode: httpStatus.OK, success: true, message: "Stat deleted", data: null });
   })
 };
