@@ -10,11 +10,19 @@ export interface IOurTeam extends Document {
   name: string;
   role: string;
   image: string;
+  image_key?: string;
+  bio?: string;
+  socialLinks?: {
+    linkedin?: string;
+    twitter?: string;
+    github?: string;
+  };
   status: "active" | "inactive";
 }
 
 export interface IFounderMessage extends Document {
   image: string;
+  image_key?: string;
   name: string;
   role: string;
   shortDesc: string;
@@ -22,4 +30,5 @@ export interface IFounderMessage extends Document {
   highlightQuote: string;
   paragraphs: string[];
   commitments: string[];
+  message?: string;
 }

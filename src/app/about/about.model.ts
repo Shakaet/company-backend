@@ -17,6 +17,13 @@ const OurTeamSchema = new Schema<IOurTeam>({
   name: { type: String, required: true },
   role: { type: String, required: true },
   image: { type: String, required: true },
+  image_key: { type: String },
+  bio: { type: String },
+  socialLinks: {
+    linkedin: { type: String },
+    twitter: { type: String },
+    github: { type: String },
+  },
   status: { type: String, enum: ["active", "inactive"], default: "active" }
 }, { timestamps: true });
 
@@ -24,6 +31,7 @@ export const OurTeam = model<IOurTeam>("OurTeam", OurTeamSchema);
 
 const FounderMessageSchema = new Schema<IFounderMessage>({
   image: { type: String },
+  image_key: { type: String },
   name: { type: String },
   role: { type: String },
   shortDesc: { type: String },
@@ -32,7 +40,8 @@ const FounderMessageSchema = new Schema<IFounderMessage>({
   ],
   highlightQuote: { type: String },
   paragraphs: [{ type: String }],
-  commitments: [{ type: String }]
+  commitments: [{ type: String }],
+  message: { type: String }
 }, { timestamps: true });
 
 export const FounderMessage = model<IFounderMessage>("FounderMessage", FounderMessageSchema);
