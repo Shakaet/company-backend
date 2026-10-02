@@ -8,6 +8,7 @@ import { PricingRoutes } from "../app/pricing/pricing.routes";
 import { PortfolioRoutes } from "../app/portfolio/portfolio.routes";
 import { ServiceRoutes } from "../app/services/service.routes";
 import { AboutRoutes } from "../app/about/about.routes";
+import { HomeElementsRoutes } from "../app/homeElements/homeElements.routes";
 const router = express.Router();
 
 
@@ -139,6 +140,10 @@ const moduleRoutes = [
   {
     path: "/about",
     route: AboutRoutes,
+  },
+  {
+    path: "/home-elements",
+    route: HomeElementsRoutes,
   }
   // {
   //   path: "/coupon",
