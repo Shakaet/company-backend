@@ -9,6 +9,7 @@ import { PortfolioRoutes } from "../app/portfolio/portfolio.routes";
 import { ServiceRoutes } from "../app/services/service.routes";
 import { AboutRoutes } from "../app/about/about.routes";
 import { HomeElementsRoutes } from "../app/homeElements/homeElements.routes";
+import { SiteSettingRoutes } from "../app/site-setting/site-setting.routes";
 const router = express.Router();
 
 
@@ -144,6 +145,10 @@ const moduleRoutes = [
   {
     path: "/home-elements",
     route: HomeElementsRoutes,
+  },
+  {
+    path: "/site-setting",
+    route: SiteSettingRoutes,
   }
   // {
   //   path: "/coupon",
