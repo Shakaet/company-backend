@@ -4,8 +4,7 @@ import { createLogger, format, transports } from "winston";
 import DailyRotateFile from "winston-daily-rotate-file";
 const { combine, timestamp, label, printf } = format;
 
-//Customm Log Format
-
+//Custom Log Format
 const logFormat = printf(({ level, message, label, timestamp }) => {
   const nowDateTime: any = new Date();
   const time = nowDateTime.toLocaleTimeString();
@@ -18,11 +17,15 @@ const logFormat = printf(({ level, message, label, timestamp }) => {
   return `${date} ${time} [${label}] ${level}: ${message}`;
 });
 
-const logger = createLogger({
-  level: "info",
-  format: combine(label({ label: "DOCKER" }), timestamp(), logFormat),
-  transports: [
-    new transports.Console(),
+// Vercel serverless does not support filesystem writes — use Console only in production/Vercel
+const isVercel = !!process.env.VERCEL;
+
+const loggerTransports: any[] = [new transports.Console()];
+const errorLoggerTransports: any[] = [new transports.Console()];
+
+// Only add file transports when NOT on Vercel (local dev / server environments)
+if (!isVercel) {
+  loggerTransports.push(
     new DailyRotateFile({
       filename: path.join(
         process.cwd(),
@@ -35,15 +38,10 @@ const logger = createLogger({
       zippedArchive: false,
       maxSize: "20m",
       maxFiles: "14d",
-    }),
-  ],
-});
+    })
+  );
 
-const errorlogger = createLogger({
-  level: "error",
-  format: combine(label({ label: "DOCKER" }), timestamp(), logFormat),
-  transports: [
-    new transports.Console(),
+  errorLoggerTransports.push(
     new DailyRotateFile({
       filename: path.join(
         process.cwd(),
@@ -56,8 +54,20 @@ const errorlogger = createLogger({
       zippedArchive: false,
       maxSize: "20m",
       maxFiles: "14d",
-    }),
-  ],
+    })
+  );
+}
+
+const logger = createLogger({
+  level: "info",
+  format: combine(label({ label: "DOCKER" }), timestamp(), logFormat),
+  transports: loggerTransports,
+});
+
+const errorlogger = createLogger({
+  level: "error",
+  format: combine(label({ label: "DOCKER" }), timestamp(), logFormat),
+  transports: errorLoggerTransports,
 });
 
 export { errorlogger, logger };

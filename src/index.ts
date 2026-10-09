@@ -23,6 +23,18 @@ app.use(cookieParser());
 app.use(customCors);
 app.use(helmet());
 
+// ─── DB Connection Middleware ─────────────────────────────────────────────────
+// MUST be registered BEFORE routes so DB is ready before any query runs.
+// connectDB() uses a global cache — warm Vercel invocations return instantly.
+app.use(async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    await connectDB();
+    next();
+  } catch (err) {
+    next(err);
+  }
+});
+
 const apiLimiter = rateLimit({
   windowMs: 1 * 60 * 1000, // 1 minute
   max: 60, // max 60 requests per minute per IP
@@ -60,9 +72,6 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   next();
 });
 
-//connect to db
-connectDB();
-
 // Run every 5 second
 // setInterval(() => {
 // console.log('Running cron job every 5 minutes...');
@@ -70,25 +79,31 @@ connectDB();
 //   console.log('Successfully ran cron job.');
 // }, 5000);
 
-const port: number | any = process.env.PORT || 5000;
-const nowDateTime: any = new Date();
-const time = nowDateTime.toLocaleTimeString();
-const date = nowDateTime.toLocaleString("en-us", {
-  weekday: "short",
-  year: "numeric",
-  month: "short",
-  day: "numeric",
-});
+// Only start the HTTP server when NOT running on Vercel (local dev)
+if (!process.env.VERCEL) {
+  const port: number | any = process.env.PORT || 5000;
+  const nowDateTime: any = new Date();
+  const time = nowDateTime.toLocaleTimeString();
+  const date = nowDateTime.toLocaleString("en-us", {
+    weekday: "short",
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
 
-// "192.168.7.210",
-// app.listen(port, "192.168.7.210", () => {
-app.listen(port, () => {
-  console.log(
-    "\x1b[36m%s\x1b[0m",
-    "[FC]",
-    time,
-    ":",
-    date,
-    `: Project listening on port ${port}`
-  );
-});
+  // "192.168.7.210",
+  // app.listen(port, "192.168.7.210", () => {
+  app.listen(port, () => {
+    console.log(
+      "\x1b[36m%s\x1b[0m",
+      "[FC]",
+      time,
+      ":",
+      date,
+      `: Project listening on port ${port}`
+    );
+  });
+}
+
+// Export app for Vercel serverless
+export default app;

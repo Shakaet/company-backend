@@ -1,7 +1,15 @@
 // middlewares/customCors.ts
 import { NextFunction, Request, Response } from "express";
 
-const allowedPrivateDomains = ["http://localhost:3000", "http://localhost:3001"];
+const allowedPrivateDomains = [
+  "http://localhost:3000",
+  "http://localhost:3001",
+  "https://company-admin-phi.vercel.app",
+  "https://neutrinobyte.vercel.app",
+  "http://admin.neutrinobyte.com",
+  "https://admin.neutrinobyte.com",
+];
+
 
 const customCors = (
   req: Request,

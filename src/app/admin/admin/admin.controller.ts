@@ -5,6 +5,13 @@ import catchAsync from "../../../shared/catchAsync";
 import sendResponse from "../../../shared/sendResponse";
 import { AdminService } from "./admin.service";
 
+const isProduction = process.env.NODE_ENV === "production";
+const adminCookieOptions = {
+  httpOnly: true,
+  secure: isProduction,
+  sameSite: isProduction ? ("none" as const) : ("lax" as const),
+  path: "/",
+};
 
 export const AdminController = {
   getMe: catchAsync(async (req: Request, res: Response) => {
@@ -34,7 +41,7 @@ export const AdminController = {
   login: catchAsync(async (req: Request, res: Response) => {
     const token = await AdminService.login(req.body);
 
-    res.cookie("admin_token", token);
+    res.cookie("admin_token", token, adminCookieOptions);
 
     sendResponse(res, {
       statusCode: httpStatus.OK,
@@ -44,7 +51,7 @@ export const AdminController = {
   }),
 
   logout: catchAsync(async (_req: Request, res: Response) => {
-    res.clearCookie("admin_token");
+    res.clearCookie("admin_token", adminCookieOptions);
 
     sendResponse(res, {
       statusCode: httpStatus.OK,
