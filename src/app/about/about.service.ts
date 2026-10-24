@@ -28,7 +28,7 @@ export const AboutService = {
     });
   },
   getAllTeamMembers: async () => {
-    return await OurTeam.find({ status: "active" }).sort({ createdAt: -1 });
+    return await OurTeam.find({ status: "active" }).sort({ createdAt: 1 });
   },
   getAllTeamMembersForAdmin: async (page = 1, limit = 10) => {
     const skip = (page - 1) * limit;
